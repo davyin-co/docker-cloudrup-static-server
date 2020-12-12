@@ -1,8 +1,10 @@
 version: '3'
 services:
   static-server:
-    image: davyinsa/cloudrup-static-server
+    #image: davyinsa/cloudrup-static-server
+    build: . 
     container_name: static-server
+    hostname: cloudrup-static-server.docker
     restart: always
     environment: 
       - APACHE_MAX_THREAD=100
@@ -10,4 +12,4 @@ services:
       - ./aegir:/var/aegir
     ports:
       - "80:80"
-      - "22:22"
+      - "8022:22"

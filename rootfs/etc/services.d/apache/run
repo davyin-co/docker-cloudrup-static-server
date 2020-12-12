@@ -1,10 +1,8 @@
 #!/usr/bin/with-contenv bash
+mkdir /var/log/aegir
+mkdir -p /var/aegir/config
+echo "" > /var/aegir/config/apache.conf
+ln -sf /var/aegir/config/apache.conf /etc/apache2/conf-available/aegir.conf
+ln -sf /etc/apache2/conf-available/aegir.conf /etc/apache2/conf-enabled/aegir.conf
 
-PROCESS_NAME="apache"
-
-check_container_initialized
-check_service_initialized init
-liftoff
-
-print_info "Starting apache"
-silent exec s6-setuidgid www-data apachectl -D FOREGROUND
+exec apachectl -D FOREGROUND
