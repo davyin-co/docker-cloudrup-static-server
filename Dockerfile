@@ -22,9 +22,7 @@ RUN chmod +x /tmp/s6-overlay-amd64-installer && \
     a2enmod ssl && \
     a2enmod proxy && \
     a2enmod proxy_http && \
-    a2enmod headers && \
-    chown root:root /etc/sudoers.d/aegir && \
-    chmod 0440 /etc/sudoers.d/aegir 
+    a2enmod headers 
 COPY rootfs /
 #USER aegir
 WORKDIR /var/aegir
