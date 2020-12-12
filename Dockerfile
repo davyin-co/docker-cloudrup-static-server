@@ -6,7 +6,6 @@ ENV TERM="xterm" \
     S6_OVERLAY_VERSION="2.1.0.2" \
     AEGIR_UID=1000
 ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-amd64-installer /tmp/
-COPY sudoers-aegir /etc/sudoers.d/aegir
 RUN chmod +x /tmp/s6-overlay-amd64-installer && \
     /tmp/s6-overlay-amd64-installer / && \
     rm /tmp/s6-overlay-amd64-installer && \
