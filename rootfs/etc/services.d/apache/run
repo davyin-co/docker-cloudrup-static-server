@@ -1,8 +1,16 @@
 #!/usr/bin/with-contenv bash
-mkdir /var/log/aegir
-mkdir -p /var/aegir/config
-echo "" > /var/aegir/config/apache.conf
-ln -sf /var/aegir/config/apache.conf /etc/apache2/conf-available/aegir.conf
-ln -sf /etc/apache2/conf-available/aegir.conf /etc/apache2/conf-enabled/aegir.conf
+if [ ! -d /var/log/aegir ]; then
+    mkdir /var/log/aegir
+fi
+
+if [ ! -d /var/log/config ]; then
+    mkdir -p /var/aegir/config
+fi
+
+if [ ! -f /var/aegir/config/apache.conf ]; then
+    echo "" > /var/aegir/config/apache.conf
+    ln -sf /var/aegir/config/apache.conf /etc/apache2/conf-available/aegir.conf
+    ln -sf /etc/apache2/conf-available/aegir.conf /etc/apache2/conf-enabled/aegir.conf
+fi
 
 exec apachectl -D FOREGROUND
