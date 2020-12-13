@@ -12,10 +12,13 @@ fi
 
 # Warn if no config
 if [ ! -e /var/aegir/.ssh/authorized_keys ]; then
-  echo "WARNING: No SSH authorized_keys found for aegir"
+    echo "WARNING: No SSH authorized_keys found for aegir"
+fi
+
+if [ ! -d /run/sshd ]; then
+    mkdir /run/sshd
 fi
 
 echo "starting sshd..."
 
-mkdir /run/sshd
 exec /usr/sbin/sshd -f /etc/ssh/sshd_config -D

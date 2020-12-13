@@ -9,8 +9,11 @@ fi
 
 if [ ! -f /var/aegir/config/apache.conf ]; then
     echo "" > /var/aegir/config/apache.conf
+fi
+
+if [ -f /var/aegir/config/apache.conf ]; then
     ln -sf /var/aegir/config/apache.conf /etc/apache2/conf-available/aegir.conf
     ln -sf /etc/apache2/conf-available/aegir.conf /etc/apache2/conf-enabled/aegir.conf
 fi
-
+echo "starting apache..."
 exec apachectl -D FOREGROUND
