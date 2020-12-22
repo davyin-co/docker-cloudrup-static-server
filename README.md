@@ -1,14 +1,6 @@
 # 介绍
 站群系统使用的webserver的docker镜像，基于ubuntu 18.04,安装配置了apache/php/ssh等。
 
-<IfModule mpm_prefork_module>
-        StartServers             {{ getenv "APACHE_MPM_PREFORK_START_SERVERS" "10" }}
-        MinSpareServers          {{ getenv "APACHE_MPM_PREFORK_MIN_SPARE_SERVERS" "10" }}
-        MaxSpareServers          {{ getenv "APACHE_MPM_PREFORK_MAX_SPARE_SERVERS" "30" }}
-        MaxRequestWorkers        {{ getenv "APACHE_MPM_PREFORK_MAX_REQUEST_WORKERS" "200" }}
-        MaxConnectionsPerChild   {{ getenv "APACHE_MPM_PREFORK_MAX_CONNECTIONS_PER_CHILD" "2000" }}
-        ServerLimit              {{ getenv "APACHE_MPM_PREFORK_SERVER_LIMIT" "200" }}
-</IfModule>
 #### apache config
 |Name|Desciption|
 |----|----------|
