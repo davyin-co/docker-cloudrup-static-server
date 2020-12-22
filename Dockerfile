@@ -22,7 +22,9 @@ RUN chmod +x /tmp/s6-overlay-amd64-installer && \
     a2enmod ssl && \
     a2enmod proxy && \
     a2enmod proxy_http && \
-    a2enmod headers 
+    a2enmod headers  && \
+    gotpl_url="https://github.com/wodby/gotpl/releases/download/0.1.5/gotpl-linux-amd64-0.1.5.tar.gz" && \
+    wget -qO- "${gotpl_url}" | tar xz -C /usr/local/bin
 COPY rootfs /
 #USER aegir
 WORKDIR /var/aegir
