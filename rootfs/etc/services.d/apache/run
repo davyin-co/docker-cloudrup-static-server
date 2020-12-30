@@ -7,6 +7,10 @@ if [ ! -d /var/log/config ]; then
     mkdir -p /var/aegir/config
 fi
 
+if [ ! -d /var/aegir/config/static ]; then
+    mkdir -p /var/aegir/config/static
+fi
+
 if [ ! -f /var/aegir/config/apache.conf ]; then
     echo "" > /var/aegir/config/apache.conf
 fi
