@@ -19,6 +19,9 @@ if [ -f /var/aegir/config/apache.conf ]; then
     ln -sf /var/aegir/config/apache.conf /etc/apache2/conf-available/aegir.conf
     ln -sf /etc/apache2/conf-available/aegir.conf /etc/apache2/conf-enabled/aegir.conf
 fi
+if [ ! -d /var/log/config ]; then
+    chown -R aegir:aeggir /var/aegir/
+fi
 # inpired by https://github.com/wodby/apache/blob/master/docker-entrypoint.sh
 _gotpl() {
     if [[ -f "$1" ]]; then
