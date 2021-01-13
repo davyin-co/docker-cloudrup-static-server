@@ -1,3 +1,4 @@
 /var/aegir false aegir,1000:1000 0644 0755
 /var/aegir/.ssh true aegir,1000:1000 0750 0750
+/var/aegir/.ssh/id_rsa true aegir,1000:1000 0400 0400
 /var/log/aegir true aegir,1000:1000 0644 0755
