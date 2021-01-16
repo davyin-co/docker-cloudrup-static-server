@@ -5,17 +5,17 @@ fi
 
 if [ ! -d /var/aegir/config ]; then
     mkdir -p /var/aegir/config
-    chown -R aegir:aeggir /var/aegir/config
+    chown -R aegir:aegir /var/aegir/config
 fi
 
 if [ ! -d /var/aegir/config/static ]; then
     mkdir -p /var/aegir/config/static
-    chown -R aegir:aeggir /var/aegir/config/static
+    chown -R aegir:aegir /var/aegir/config/static
 fi
 
 if [ ! -f /var/aegir/config/apache.conf ]; then
     echo "" > /var/aegir/config/apache.conf
-    chown -R aegir:aeggir /var/aegir/config/apache.conf
+    chown -R aegir:aegir /var/aegir/config/apache.conf
 fi
 
 if [ -f /var/aegir/config/apache.conf ]; then
