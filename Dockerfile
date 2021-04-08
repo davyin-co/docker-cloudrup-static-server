@@ -22,6 +22,7 @@ RUN chmod +x /tmp/s6-overlay-amd64-installer && \
     a2enmod ssl && \
     a2enmod proxy && \
     a2enmod proxy_http && \
+    a2enmod remoteip && \
     a2enmod headers  && \
     ## install gotpl
     gotpl_url="https://github.com/wodby/gotpl/releases/download/0.1.5/gotpl-linux-amd64-0.1.5.tar.gz" && \
