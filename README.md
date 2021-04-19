@@ -38,10 +38,13 @@ services:
 
 #### 日志处理
 默认安装了logrotate.
+
 如果期望使用自定义的方式进行日志处理，建议如下：
+
 运行容器的时候，hosting_log:/etc/logrotate.d/hosting_log
-hosting_log内容入选:
-按照大小(超过10M进行分割，保留4个文件）：
+
+hosting_log内容如下:
+* 按照大小(超过10M进行分割，保留4个文件）：
 ```
 /var/log/aegir/*.log {
          size 10M
@@ -52,7 +55,7 @@ hosting_log内容入选:
          copytruncate
 }
 ```
-按照日期(每天一个，保留30天)：
+* 按照日期(每天一个，保留30天)：
 ```
 /var/log/aegir/*.log {
         daily
