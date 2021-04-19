@@ -34,3 +34,37 @@ services:
 |APACHE_MPM_PREFORK_MAX_REQUEST_WORKERS|The config for mpm_prefork module MaxRequestWorkers, default value: 200|
 |APACHE_MPM_PREFORK_MAX_CONNECTIONS_PER_CHILD|The config for mpm_prefork module MaxConnectionsPerChild, default value: 2000|
 |APACHE_MPM_PREFORK_SERVER_LIMIT|The config for mpm_prefork module ServerLimit, default value: 200|
+
+
+#### 日志处理
+默认安装了logrotate.
+如果期望使用自定义的方式进行日志处理，建议如下：
+运行容器的时候，hosting_log:/etc/logrotate.d/hosting_log
+hosting_log内容入选:
+按照大小(超过10M进行分割，保留4个文件）：
+```
+/var/log/aegir/*.log {
+         size 10M
+         create 644 aegir aegir
+         rotate 4
+	 dateext
+         compress
+         copytruncate
+}
+```
+按照日期(每天一个，保留30天)：
+```
+/var/log/aegir/*.log {
+        daily
+        missingok
+        rotate 30
+        compress
+        delaycompress
+        notifempty
+        create 644 aegir aegir
+        sharedscripts
+        postrotate
+                /etc/init.d/apache2 reload > /dev/null
+        endscript
+}
+```
