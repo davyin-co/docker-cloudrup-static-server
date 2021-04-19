@@ -1,0 +1,4 @@
+#!/bin/bash
+if [ ! -z /etc/logrotate.conf ]; then
+  sed -i "s/su root syslog/su root adm/g" /etc/logrotate.conf
+fi
