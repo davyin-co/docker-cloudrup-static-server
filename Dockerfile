@@ -3,9 +3,11 @@ ENV TERM="xterm" \
     LANG="C.UTF-8" \
     LC_ALL="C.UTF-8" \
     DEBIAN_FRONTEND="noninteractive" \
-    S6_OVERLAY_VERSION="2.1.0.2" \
+    S6_OVERLAY_VERSION="2.2.0.3" \
     GOSU_VERSION=1.12 \
-    AEGIR_UID=1000
+    AEGIR_UID=1000 \
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u\[\033[00m\]@\h: \[\033[01;36m\]\w\[\033[00m\] \[\t\]\n\$ '
+
 ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-amd64-installer /tmp/
 RUN chmod +x /tmp/s6-overlay-amd64-installer && \
     /tmp/s6-overlay-amd64-installer / && \
