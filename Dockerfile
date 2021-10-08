@@ -29,14 +29,15 @@ RUN chmod +x /tmp/s6-overlay-amd64-installer && \
     a2enmod proxy_http && \
     a2enmod remoteip && \
     a2enmod headers  && \
-    ## install gotpl
-    gotpl_url="https://github.com/wodby/gotpl/releases/download/${GOTPL_VERSION}/gotpl-linux-amd64-${GOTPL_VERSION}.tar.gz" && \
-    wget -qO- "${gotpl_url}" | tar xz -C /usr/local/bin && \
-    ## isntall gosu
     arch="$(dpkg --print-architecture | awk -F- '{ print $NF }')" && \
-    wget -O gosu "https://github.com/tianon/gosu/releases/download/${GOSU_VERSION}/gosu-$arch" && \
-    chmod +x gosu && \
-    mv gosu /usr/local/bin && \
+    ## install gotpl
+    wget -O /tmp/gotpl.tar.gz "https://github.com/wodby/gotpl/releases/download/${GOTPL_VERSION}/gotpl-linux-$arch.tar.gz" && \
+    tar xzvf /tmp/gotpl.tar.gz -C /usr/local/bin/ && \
+    chmod +x /usr/local/bin/gotpl && \
+    ## install gosu
+    wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/${GOSU_VERSION}/gosu-$arch" && \
+    chmod +x /usr/local/bin/gosu && \
+    ## config for static server
     mkdir -p /var/aegir/config/static
 COPY rootfs /
 #USER aegir
