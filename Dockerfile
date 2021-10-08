@@ -4,7 +4,8 @@ ENV TERM="xterm" \
     LC_ALL="C.UTF-8" \
     DEBIAN_FRONTEND="noninteractive" \
     S6_OVERLAY_VERSION="2.2.0.3" \
-    GOSU_VERSION=1.12 \
+    GOSU_VERSION=1.14 \
+    GOTPL_VERSION=0.3.3 \
     AEGIR_UID=1000 \
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u\[\033[00m\]@\h: \[\033[01;36m\]\w\[\033[00m\] \[\t\]\n\$ '
 
@@ -29,11 +30,11 @@ RUN chmod +x /tmp/s6-overlay-amd64-installer && \
     a2enmod remoteip && \
     a2enmod headers  && \
     ## install gotpl
-    gotpl_url="https://github.com/wodby/gotpl/releases/download/0.1.5/gotpl-linux-amd64-0.1.5.tar.gz" && \
+    gotpl_url="https://github.com/wodby/gotpl/releases/download/${GOTPL_VERSION}/gotpl-linux-amd64-${GOTPL_VERSION}.tar.gz" && \
     wget -qO- "${gotpl_url}" | tar xz -C /usr/local/bin && \
     ## isntall gosu
     arch="$(dpkg --print-architecture | awk -F- '{ print $NF }')" && \
-    wget -O gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$arch" && \
+    wget -O gosu "https://github.com/tianon/gosu/releases/download/${GOSU_VERSION}/gosu-$arch" && \
     chmod +x gosu && \
     mv gosu /usr/local/bin && \
     mkdir -p /var/aegir/config/static
