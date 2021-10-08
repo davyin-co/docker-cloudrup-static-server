@@ -12,9 +12,9 @@ ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLA
 RUN chmod +x /tmp/s6-overlay-amd64-installer && \
     /tmp/s6-overlay-amd64-installer / && \
     rm /tmp/s6-overlay-amd64-installer && \
+    add-apt-repository -y ppa:ondrej/apache2 && \
     apt-get update -qq && \
     apt-get install -y software-properties-common tzdata apache2 sudo rsync git-core unzip wget vim openssh-server logrotate && \
-    add-apt-repository -y ppa:ondrej/apache2 && \
     addgroup --gid ${AEGIR_UID} aegir && \
     adduser --uid ${AEGIR_UID} --gid ${AEGIR_UID} --system --home /var/aegir aegir && \
     adduser aegir www-data && \
