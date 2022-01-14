@@ -18,8 +18,10 @@ services:
       - APACHE_MPM_PREFORK_MAX_REQUEST_WORKERS=200
       - APACHE_MPM_PREFORK_MAX_CONNECTIONS_PER_CHILD=10000
       - APACHE_MPM_PREFORK_SERVER_LIMIT=300
+      - APACHE_LOGS_KEEP_DAYS=180
     volumes:
       - ./aegir:/var/aegir
+      - /var/log/apache2:/var/log/apache2
     ports:
       - "8080:80"
       - "8022:22"

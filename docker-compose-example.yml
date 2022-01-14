@@ -10,6 +10,7 @@ services:
       - APACHE_MAX_THREAD=100
     volumes:
       - ./aegir:/var/aegir
+      - /var/log/apache2:/var/log/apache2
     ports:
       - "80:80"
       - "8022:22"
