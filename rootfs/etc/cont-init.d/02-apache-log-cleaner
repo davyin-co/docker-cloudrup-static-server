@@ -1,0 +1,3 @@
+#!/usr/bin/with-contenv bash
+gotpl /etc/gotpl/apache2-logs-cleaner.tmpl > /etc/cron.daily/apache-log-cleaner
+chmod +x /etc/cron.daily/apache-log-cleaner

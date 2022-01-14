@@ -34,6 +34,7 @@ services:
 |APACHE_MPM_PREFORK_MAX_REQUEST_WORKERS|The config for mpm_prefork module MaxRequestWorkers, default value: 200|
 |APACHE_MPM_PREFORK_MAX_CONNECTIONS_PER_CHILD|The config for mpm_prefork module MaxConnectionsPerChild, default value: 2000|
 |APACHE_MPM_PREFORK_SERVER_LIMIT|The config for mpm_prefork module ServerLimit, default value: 200|
+|APACHE_LOGS_KEEP_DAYS|by default the logs files store in /var/log/apache2, and spilit by days, default value: 180 days|
 
 
 #### 日志处理
@@ -41,9 +42,9 @@ services:
 
 如果期望使用自定义的方式进行日志处理，建议如下：
 
-运行容器的时候，hosting_log:/etc/logrotate.d/hosting_log
+运行容器的时候，./conf/hosting_log:/etc/logrotate.d/hosting_log
 
-hosting_log内容如下:
+./conf/hosting_log内容如下:
 * 按照大小(超过10M进行分割，保留4个文件）：
 ```
 /var/log/aegir/*.log {

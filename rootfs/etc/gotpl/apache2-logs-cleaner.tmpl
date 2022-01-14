@@ -1,0 +1,2 @@
+#!/usr/bin/with-contenv bash
+/usr/bin/find /var/log/apache2/ -name *.log -mtime +{{ getenv "APACHE_LOGS_KEEP_DAYS" "180" }} -exec rm -rf {} \;
