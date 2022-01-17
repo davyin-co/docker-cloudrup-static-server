@@ -1,5 +1,5 @@
 # 介绍
-站群系统使用的webserver的docker镜像，基于ubuntu 18.04,安装配置了apache/php/ssh等。
+站群系统使用的webserver的docker镜像，基于ubuntu 20.04,安装配置了apache/php/ssh等。
 
 # docker-compose example
 ```
@@ -40,6 +40,13 @@ services:
 
 
 #### 日志处理
+access log采用apache自带的rotatlogs进行处理，按日分割，默认保留180天，以满足等保要求。可以通过APACHE_LOGS_KEEP_DAYS进行调整。
+配置如下：
+```
+LogFormat "%{X-FORWARDED-FOR}i %v:%p %h %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" vhost_combined
+CustomLog "|/usr/bin/rotatelogs ${APACHE_LOG_DIR}/%Y-%m-%d_access.log 86400 480" vhost_combined
+```
+### 如果希望使用logrotate进行日志处理，需要手工安装，如下配置供参考：
 默认安装了logrotate.
 
 如果期望使用自定义的方式进行日志处理，建议如下：
