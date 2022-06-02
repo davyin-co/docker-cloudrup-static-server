@@ -1,4 +1,4 @@
-FROM ubuntu:focal-20220113
+FROM ubuntu:22.04
 ENV TERM="xterm" \
     LANG="C.UTF-8" \
     LC_ALL="C.UTF-8" \
