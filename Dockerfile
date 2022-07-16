@@ -14,7 +14,7 @@ RUN chmod +x /tmp/s6-overlay-amd64-installer && \
     /tmp/s6-overlay-amd64-installer / && \
     rm /tmp/s6-overlay-amd64-installer && \
     apt update -qq && \
-    apt install -y software-properties-common tzdata apache2 sudo rsync git-core unzip wget vim openssh-server && \
+    apt install -y software-properties-common tzdata apache2 sudo rsync git-core unzip wget vim openssh-server cron && \
     add-apt-repository -y ppa:ondrej/apache2 && \
     ## force upgrade.
     apt upgrade -y && \
