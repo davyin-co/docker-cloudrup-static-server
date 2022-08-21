@@ -10,7 +10,8 @@ ENV TERM="xterm" \
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u\[\033[00m\]@\h: \[\033[01;36m\]\w\[\033[00m\] \[\t\]\n\$ '
 
 RUN apt update -qq && \
-    apt install -y software-properties-common tzdata apache2 sudo rsync git-core unzip wget vim openssh-server cron  curl && \
+    apt install -y software-properties-common tzdata apache2 sudo rsync git-core unzip wget vim openssh-server cron  curl logrotate && \
+    mv /etc/logrotate.d/apache2 /tmp/ && \
     arch=`uname -m | tr '[:upper:]' '[:lower:]'` && \
     curl -sSL https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz | tar xvpfJ - -C / && \
     curl -sSL https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-${arch}.tar.xz | tar xvpfJ - -C / && \
