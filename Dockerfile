@@ -3,14 +3,14 @@ ENV TERM="xterm" \
     LANG="C.UTF-8" \
     LC_ALL="C.UTF-8" \
     DEBIAN_FRONTEND="noninteractive" \
-    S6_OVERLAY_VERSION="3.1.1.2" \
-    GOSU_VERSION=1.14 \
+    S6_OVERLAY_VERSION="3.1.5.0" \
+    GOSU_VERSION=1.16 \
     GOTPL_VERSION=0.3.3 \
     AEGIR_UID=1000 \
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u\[\033[00m\]@\h: \[\033[01;36m\]\w\[\033[00m\] \[\t\]\n\$ '
-
-RUN apt update -qq && \
-    apt install -y software-properties-common tzdata apache2 sudo rsync git-core unzip wget vim openssh-server cron  curl logrotate && \
+RUN echo 'DPkg::options { "--force-confdef"; };' >> /etc/apt/apt.conf && \
+    apt update -qq && \
+    apt install -y software-properties-common tzdata apache2 sudo rsync git-core unzip wget vim openssh-server cron  curl logrotate xz-utils && \
     mv /etc/logrotate.d/apache2 /tmp/ && \
     arch=`uname -m | tr '[:upper:]' '[:lower:]'` && \
     curl -sSL https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz | tar xvpfJ - -C / && \
