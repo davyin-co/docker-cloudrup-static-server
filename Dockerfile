@@ -7,6 +7,8 @@ ENV TERM="xterm" \
     GOSU_VERSION=1.16 \
     GOTPL_VERSION=0.3.3 \
     AEGIR_UID=1000 \
+    APACHE_RUN_USER=aegir \
+    APACHE_RUN_GROUP=www-data \
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u\[\033[00m\]@\h: \[\033[01;36m\]\w\[\033[00m\] \[\t\]\n\$ '
 RUN echo 'DPkg::options { "--force-confdef"; };' >> /etc/apt/apt.conf && \
     apt update -qq && \
