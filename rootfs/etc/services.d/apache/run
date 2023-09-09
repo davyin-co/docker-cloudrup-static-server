@@ -34,5 +34,7 @@ _gotpl() {
 # apache conf
 _gotpl "/etc/gotpl/apache2-mpm-prefork.tmpl" "/etc/apache2/conf-enabled/mpm-prefork.conf"
 
+sed -i "s/\${APACHE_RUN_USER}/${APACHE_RUN_USER}/g" /etc/apache2/apache2.conf
+
 echo "Starting apache..."
 exec apachectl -D FOREGROUND
